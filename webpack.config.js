@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -10,6 +11,12 @@ module.exports = {
   devServer: {
     static: './dist',
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'To Do, or Not To Do',
+    }),
+  ],
 
   output: {
     filename: '[name].bundle.js',
