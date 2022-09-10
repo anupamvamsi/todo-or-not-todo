@@ -15,6 +15,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'To Do, or Not To Do',
+      template: './templates/index-template.html',
     }),
   ],
 
