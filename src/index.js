@@ -1,5 +1,6 @@
 require('./styles/index.css');
 require('./styles/todo-item.css');
+require('./styles/todo-list.css');
 
 import ToDoItem from './ToDo';
 import Display from './Display';
