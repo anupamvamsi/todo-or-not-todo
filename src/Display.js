@@ -49,4 +49,32 @@ export default class Display {
 
     DOMElements.content.appendChild(todoItemContainer);
   }
+
+  static displayToDoList(todoList, todoItems) {
+    const title = DOM.createElementWTCAndClasses(
+      'h2',
+      todoList.title,
+      'todo-list-title'
+    );
+
+    const description = DOM.createElementWTCAndClasses(
+      'p',
+      todoList.description,
+      'todo-list-desc'
+    );
+
+    const todoListContainer = DOM.createEleAndAddClasses('div', 'todo-list');
+    DOM.appendChildren(todoListContainer, title, description);
+
+    const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
+    console.log(todoItems);
+    todoItems.forEach((item) => {
+      console.log(item);
+      todoItemsContainer.appendChild(item);
+      console.log(todoItemsContainer);
+    });
+
+    todoListContainer.appendChild(todoItemsContainer);
+    DOMElements.content.appendChild(todoListContainer);
+  }
 }
