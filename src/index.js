@@ -3,9 +3,13 @@ require('./styles/todo-item.css');
 
 import ToDoItem from './ToDo';
 import Display from './Display';
+import ToDoList from './ToDoList';
 
 const todoItem1 = new ToDoItem('First', 'blah ', '28 April', '1', true);
 Display.displayToDoItem(todoItem1);
 
-const todoItem2 = new ToDoItem('Second', 'blah blah blah', '37 April', '2');
+const todoItem2 = new ToDoItem('Second', 'blah blah blah', '17 April', '2');
 Display.displayToDoItem(todoItem2);
+
+const todoList1 = new ToDoList('Default list', 'blaaaahhhh');
+Display.displayToDoList(todoList1, document.querySelectorAll('.todo-item'));
