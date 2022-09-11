@@ -1,9 +1,21 @@
-import ToDo from './ToDo';
+import ToDoItem from './ToDo';
 import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
   static displayToDoItem(todoItem) {
+    const isDone = DOM.createEleAndAddAttributes(
+      'input',
+      ['class', 'todo-done'],
+      ['type', 'checkbox'],
+      ['name', 'isDone'],
+      ['title', 'To do item done?']
+    );
+
+    if (todoItem.isDone) {
+      isDone.setAttribute('checked', true);
+    }
+
     const title = DOM.createElementWTCAndClasses(
       'h3',
       todoItem.title,
@@ -25,9 +37,10 @@ export default class Display {
       'todo-priority'
     );
 
-    const todoItemContainer = document.createElement('div');
+    const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
     DOM.appendChildren(
       todoItemContainer,
+      isDone,
       title,
       description,
       dueDate,
