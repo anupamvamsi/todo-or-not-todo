@@ -4,15 +4,15 @@ export default class ToDoItem {
     description,
     dueDate,
     priority,
-    isDone = false,
-    parentList = 'Home'
+    parentList = 'Home',
+    isDone = false
   ) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.isDone = isDone;
     this.parentList = parentList;
+    this.isDone = isDone;
   }
 
   changeItemStatus() {

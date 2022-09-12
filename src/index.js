@@ -16,8 +16,8 @@ function main() {
     'blah ',
     '28 April',
     '1',
-    true,
-    'Home'
+    'Home',
+    true
   );
   Display.displayToDoItem(todoItem1);
 
@@ -26,7 +26,8 @@ function main() {
     'blah blah blah',
     '17 April',
     '2',
-    'Home'
+    'Chores',
+    false
   );
   Display.displayToDoItem(todoItem2);
 

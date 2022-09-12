@@ -45,14 +45,14 @@ export default class App {
     this.addChildToList(todoItem.parentList, todoItem);
   }
 
-  createToDoItem(title, description, dueDate, priority, isDone, parentList) {
+  createToDoItem(title, description, dueDate, priority, parentList, isDone) {
     const newItem = new ToDoItem(
       title,
       description,
       dueDate,
       priority,
-      isDone,
-      parentList
+      parentList,
+      isDone
     );
 
     App.todoItems.push(newItem);
