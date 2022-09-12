@@ -77,4 +77,24 @@ export default class Display {
     todoListContainer.appendChild(todoItemsContainer);
     DOMElements.content.appendChild(todoListContainer);
   }
+
+  static displayAddToDoItem() {
+    const plus = DOM.createElementWTCAndClasses('p', '+', 'add-todo-plus');
+    const addItem = DOM.createElementWTCAndClasses(
+      'h3',
+      'Add item',
+      'add-todo-txt'
+    );
+
+    const addToDoItemContainer = DOM.createEleAndAddClasses(
+      'div',
+      'todo-item',
+      'add-todo-container'
+    );
+
+    DOM.appendChildren(addToDoItemContainer, plus, addItem);
+    DOMElements.getElementOfSelector('.todo-items').appendChild(
+      addToDoItemContainer
+    );
+  }
 }
