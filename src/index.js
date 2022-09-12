@@ -2,9 +2,7 @@ require('./styles/index.css');
 require('./styles/todo-item.css');
 require('./styles/todo-list.css');
 
-import ToDoItem from './ToDo';
 import Display from './Display';
-import ToDoList from './ToDoList';
 import App from './App';
 
 function main() {
@@ -15,31 +13,17 @@ function main() {
   const todoList4 = app.createToDoList('Main', 'A list of all your tasks');
   const todoList5 = app.createToDoList('Flutes', 'A list of all your tasks');
 
-  const todoItem1 = app.createToDoItem(
-    'First',
-    'blah ',
-    '28 April',
-    '1',
-    'Home',
-    true
-  );
-  Display.constructToDoItem(todoItem1);
+  app.createToDoItem('First', 'blah ', '28 April', '1', 'Home', true);
+  app.createToDoItem('Premier', 'blah ', '18 April', '2', '', false);
 
-  const todoItem2 = app.createToDoItem(
-    'Second',
-    'blah blah blah',
-    '17 April',
-    '2',
-    'Chores',
-    false
-  );
-  Display.constructToDoItem(todoItem2);
+  app.createToDoItem('Second', 'blah blah', '17 April', '2', 'Chores', false);
+  app.createToDoItem('Deuxieme', 'blah ', '08 April', '2', 'Chores', true);
 
-  Display.constructToDoList(todoList1);
   Display.constructToDoList(todoList2);
-  Display.constructToDoList(todoList3);
-  Display.constructToDoList(todoList4);
-  Display.constructToDoList(todoList5);
+  Display.addToDoListToSidebar(todoList2);
+  Display.addToDoListToSidebar(todoList3);
+  Display.addToDoListToSidebar(todoList4);
+  Display.addToDoListToSidebar(todoList5);
 
   Display.constructAddToDoItem();
 }
