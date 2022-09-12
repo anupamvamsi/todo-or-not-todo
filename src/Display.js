@@ -6,7 +6,6 @@ export default class Display {
   static displayToDoItem(todoItem) {
     const isDone = DOM.createEleAndAddAttributes(
       'input',
-      ['class', 'todo-done'],
       ['type', 'checkbox'],
       ['name', 'isDone'],
       ['title', 'To do item done?']
@@ -50,7 +49,25 @@ export default class Display {
     DOMElements.content.appendChild(todoItemContainer);
   }
 
-  static displayToDoList(todoList, todoItems) {
+  static checkAndAddToDoList(todoList) {
+    const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
+    const todoListContent = [];
+    todoListItems.forEach((item) => todoListContent.push(item.textContent));
+
+    if (!todoListContent.includes(todoList.title) && todoList.title != 'Home') {
+      const sidebarToDoLists = document.querySelector('.sidebar-todo-lists');
+      const newToDoList = DOM.createElementAndAddTextContent(
+        'li',
+        todoList.title
+      );
+
+      sidebarToDoLists.appendChild(newToDoList);
+    }
+  }
+
+  static displayToDoList(todoList) {
+    Display.checkAndAddToDoList(todoList);
+
     const title = DOM.createElementWTCAndClasses(
       'h2',
       todoList.title,
@@ -67,12 +84,12 @@ export default class Display {
     DOM.appendChildren(todoListContainer, title, description);
 
     const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
-    console.log(todoItems);
-    todoItems.forEach((item) => {
-      console.log(item);
-      todoItemsContainer.appendChild(item);
-      console.log(todoItemsContainer);
-    });
+    // console.log(todoItems);
+    // todoItems.forEach((item) => {
+    // console.log(item);
+    // todoItemsContainer.appendChild(item);
+    // console.log(todoItemsContainer);
+    // });
 
     todoListContainer.appendChild(todoItemsContainer);
     DOMElements.content.appendChild(todoListContainer);
