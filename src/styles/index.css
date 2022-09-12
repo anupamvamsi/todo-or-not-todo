@@ -11,13 +11,45 @@ body {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 #content {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+
   margin: 0;
 }
 
 #title {
+  grid-column: 1 / 3;
+
   margin: 0;
   padding: 1em;
 
   background-color: cyan;
+}
+
+.sidebar {
+  margin: 0em;
+  padding: 2em;
+}
+
+.sidebar-items {
+  list-style: none;
+
+  margin: 0em;
+  padding: 0em;
+}
+
+.sidebar-items li {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  padding: 0 0 1em 0;
+}
+
+.sidebar-items li a {
+  color: black;
 }
