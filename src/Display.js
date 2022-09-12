@@ -3,7 +3,23 @@ import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
-  static displayToDoItem(todoItem) {
+  static checkAndAddToDoList(todoList) {
+    const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
+    const todoListContent = [];
+    todoListItems.forEach((item) => todoListContent.push(item.textContent));
+
+    if (!todoListContent.includes(todoList.title) && todoList.title != 'Home') {
+      const sidebarToDoLists = document.querySelector('.sidebar-todo-lists');
+      const newToDoList = DOM.createElementAndAddTextContent(
+        'li',
+        todoList.title
+      );
+
+      sidebarToDoLists.appendChild(newToDoList);
+    }
+  }
+
+  static constructToDoItem(todoItem) {
     const isDone = DOM.createEleAndAddAttributes(
       'input',
       ['type', 'checkbox'],
@@ -46,26 +62,10 @@ export default class Display {
       priority
     );
 
-    DOMElements.content.appendChild(todoItemContainer);
+    return todoItemContainer;
   }
 
-  static checkAndAddToDoList(todoList) {
-    const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
-    const todoListContent = [];
-    todoListItems.forEach((item) => todoListContent.push(item.textContent));
-
-    if (!todoListContent.includes(todoList.title) && todoList.title != 'Home') {
-      const sidebarToDoLists = document.querySelector('.sidebar-todo-lists');
-      const newToDoList = DOM.createElementAndAddTextContent(
-        'li',
-        todoList.title
-      );
-
-      sidebarToDoLists.appendChild(newToDoList);
-    }
-  }
-
-  static displayToDoList(todoList) {
+  static constructToDoList(todoList) {
     Display.checkAndAddToDoList(todoList);
 
     const title = DOM.createElementWTCAndClasses(
@@ -92,10 +92,11 @@ export default class Display {
     // });
 
     todoListContainer.appendChild(todoItemsContainer);
-    DOMElements.content.appendChild(todoListContainer);
+
+    return todoListContainer;
   }
 
-  static displayAddToDoItem() {
+  static constructAddToDoItem() {
     const plus = DOM.createElementWTCAndClasses('p', '+', 'add-todo-plus');
     const addItem = DOM.createElementWTCAndClasses(
       'h3',
@@ -110,8 +111,7 @@ export default class Display {
     );
 
     DOM.appendChildren(addToDoItemContainer, plus, addItem);
-    DOMElements.getElementOfSelector('.todo-items').appendChild(
-      addToDoItemContainer
-    );
+
+    return addToDoItemContainer;
   }
 }
