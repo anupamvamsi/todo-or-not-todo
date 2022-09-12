@@ -10,6 +10,10 @@ import App from './App';
 function main() {
   const app = new App();
   const todoList1 = app.createToDoList('Home', 'A list of all your tasks');
+  const todoList2 = app.createToDoList('Chores', 'A list of all your tasks');
+  const todoList3 = app.createToDoList('Scooby', 'A list of all your tasks');
+  const todoList4 = app.createToDoList('Main', 'A list of all your tasks');
+  const todoList5 = app.createToDoList('Flutes', 'A list of all your tasks');
 
   const todoItem1 = app.createToDoItem(
     'First',
@@ -19,7 +23,7 @@ function main() {
     'Home',
     true
   );
-  Display.displayToDoItem(todoItem1);
+  Display.constructToDoItem(todoItem1);
 
   const todoItem2 = app.createToDoItem(
     'Second',
@@ -29,11 +33,15 @@ function main() {
     'Chores',
     false
   );
-  Display.displayToDoItem(todoItem2);
+  Display.constructToDoItem(todoItem2);
 
-  Display.displayToDoList(todoList1);
+  Display.constructToDoList(todoList1);
+  Display.constructToDoList(todoList2);
+  Display.constructToDoList(todoList3);
+  Display.constructToDoList(todoList4);
+  Display.constructToDoList(todoList5);
 
-  Display.displayAddToDoItem();
+  Display.constructAddToDoItem();
 }
 
 main();
