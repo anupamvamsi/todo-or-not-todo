@@ -20,10 +20,6 @@ function main() {
   app.createToDoItem('Deuxieme', 'blah ', '08 April', '2', 'Chores', true);
 
   Display.displayToDoList(todoList1);
-  Display.addToDoListToSidebar(todoList2);
-  Display.addToDoListToSidebar(todoList3);
-  Display.addToDoListToSidebar(todoList4);
-  Display.addToDoListToSidebar(todoList5);
 
   Display.constructAddToDoItem();
 }

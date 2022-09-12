@@ -1,5 +1,6 @@
 import ToDoItem from './ToDo';
 import ToDoList from './ToDoList';
+import Display from './Display';
 
 export default class App {
   static todoItems = [];
@@ -77,6 +78,7 @@ export default class App {
       console.log(`Creating ${title} ToDoList...`);
       newList = new ToDoList(title, description);
       App.todoLists.push(newList);
+      Display.addToDoListToSidebar(newList);
       console.log('Todo lists:', App.todoLists);
     } else {
       console.log(`${title} already exists`);
