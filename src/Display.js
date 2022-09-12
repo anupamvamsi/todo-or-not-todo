@@ -1,4 +1,3 @@
-import ToDoItem from './ToDo';
 import DOMElements from './DOMElements';
 import DOM from './DOM';
 
@@ -64,8 +63,6 @@ export default class Display {
   }
 
   static constructToDoList(todoList) {
-    Display.addToDoListToSidebar(todoList);
-
     const title = DOM.createElementWTCAndClasses(
       'h2',
       todoList.title,
@@ -82,14 +79,14 @@ export default class Display {
     DOM.appendChildren(todoListContainer, title, description);
 
     const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
-    // console.log(todoItems);
-    // todoItems.forEach((item) => {
-    // console.log(item);
-    // todoItemsContainer.appendChild(item);
-    // console.log(todoItemsContainer);
-    // });
+
+    const todoItems = todoList.children;
+    todoItems.forEach((item) => {
+      todoItemsContainer.appendChild(Display.constructToDoItem(item));
+    });
 
     todoListContainer.appendChild(todoItemsContainer);
+    DOMElements.content.appendChild(todoListContainer);
 
     return todoListContainer;
   }
