@@ -62,6 +62,25 @@ export default class Display {
     return todoItemContainer;
   }
 
+  static constructAddToDoItem() {
+    const plus = DOM.createElementWTCAndClasses('p', '+', 'add-todo-plus');
+    const addItem = DOM.createElementWTCAndClasses(
+      'h3',
+      'Add item',
+      'add-todo-txt'
+    );
+
+    const addToDoItemContainer = DOM.createEleAndAddClasses(
+      'div',
+      'todo-item',
+      'add-todo-container'
+    );
+
+    DOM.appendChildren(addToDoItemContainer, plus, addItem);
+
+    return addToDoItemContainer;
+  }
+
   static constructToDoList(todoList) {
     const title = DOM.createElementWTCAndClasses(
       'h2',
@@ -86,27 +105,13 @@ export default class Display {
     });
 
     todoListContainer.appendChild(todoItemsContainer);
-    DOMElements.content.appendChild(todoListContainer);
+    todoListContainer.appendChild(Display.constructAddToDoItem());
 
     return todoListContainer;
   }
 
-  static constructAddToDoItem() {
-    const plus = DOM.createElementWTCAndClasses('p', '+', 'add-todo-plus');
-    const addItem = DOM.createElementWTCAndClasses(
-      'h3',
-      'Add item',
-      'add-todo-txt'
-    );
-
-    const addToDoItemContainer = DOM.createEleAndAddClasses(
-      'div',
-      'todo-item',
-      'add-todo-container'
-    );
-
-    DOM.appendChildren(addToDoItemContainer, plus, addItem);
-
-    return addToDoItemContainer;
+  static displayToDoList(todoList) {
+    const todoListContainer = Display.constructToDoList(todoList);
+    DOMElements.content.appendChild(todoListContainer);
   }
 }
