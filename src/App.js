@@ -8,15 +8,12 @@ export default class App {
   constructor() {}
 
   getToDoList(title) {
-    let returnList;
+    let returnList = undefined;
 
-    App.todoLists.forEach((list) => {
-      if (list.title === title) {
-        returnList = list;
-      } else {
-        returnList = undefined;
-      }
-    });
+    if (this.getToDoListTitles().includes(title)) {
+      let foundTitle = App.todoLists.filter((list) => list.title === title);
+      returnList = foundTitle[0];
+    }
 
     return returnList;
   }
