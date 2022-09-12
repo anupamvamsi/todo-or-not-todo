@@ -17,7 +17,7 @@ function createDefaultToDo() {
 
   Display.displayToDoList(todoList1, document.querySelectorAll('.todo-item'));
 
-  Display.addToDoItem();
+  Display.displayAddToDoItem();
 }
 
 createDefaultToDo();
