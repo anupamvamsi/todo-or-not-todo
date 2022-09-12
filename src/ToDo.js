@@ -6,4 +6,12 @@ export default class ToDoItem {
     this.priority = priority;
     this.isDone = isDone;
   }
+
+  changeItemStatus() {
+    this.isDone = true;
+  }
+
+  changeItemPriority(priority) {
+    this.priority = priority;
+  }
 }
