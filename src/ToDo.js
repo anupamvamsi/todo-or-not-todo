@@ -11,7 +11,7 @@ export default class ToDoItem {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.parentList = parentList;
+    this.parentList = parentList || 'Home';
     this.isDone = isDone;
   }
 
