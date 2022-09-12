@@ -3,7 +3,7 @@ import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
-  static checkAndAddToDoList(todoList) {
+  static addToDoListToSidebar(todoList) {
     const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
     const todoListContent = [];
     todoListItems.forEach((item) => todoListContent.push(item.textContent));
@@ -66,7 +66,7 @@ export default class Display {
   }
 
   static constructToDoList(todoList) {
-    Display.checkAndAddToDoList(todoList);
+    Display.addToDoListToSidebar(todoList);
 
     const title = DOM.createElementWTCAndClasses(
       'h2',
