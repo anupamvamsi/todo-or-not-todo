@@ -19,7 +19,7 @@ function main() {
   app.createToDoItem('Second', 'blah blah', '17 April', '2', 'Chores', false);
   app.createToDoItem('Deuxieme', 'blah ', '08 April', '2', 'Chores', true);
 
-  Display.constructToDoList(todoList2);
+  Display.displayToDoList(todoList1);
   Display.addToDoListToSidebar(todoList2);
   Display.addToDoListToSidebar(todoList3);
   Display.addToDoListToSidebar(todoList4);
