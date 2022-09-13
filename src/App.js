@@ -2,6 +2,7 @@ import ToDoItem from './ToDo';
 import ToDoList from './ToDoList';
 import Display from './Display';
 import MyEvent from './MyEvent';
+import DOMElements from './DOMElements';
 
 export default class App {
   static todoItems = [];
@@ -60,6 +61,8 @@ export default class App {
 
     // Add todoItem to todoList
     this.addItemToParentList(newItem);
+    const todoList = this.getToDoList(newItem.parentList);
+    Display.updateNumItemsOfListInSidebar(todoList);
 
     return newItem;
   }
@@ -85,11 +88,10 @@ export default class App {
 
       let sidebarAddition;
       if (title === 'Home') {
-        sidebarAddition = document.querySelector('.sidebar-items>li>a');
+        sidebarAddition = DOMElements.getSidebarHomeList();
       } else {
         sidebarAddition = Display.addToDoListToSidebar(newList);
       }
-      console.log(sidebarAddition);
       App.event.addEvtListenerToSbrLstItem(sidebarAddition, newList);
     }
 
