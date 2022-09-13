@@ -97,8 +97,14 @@ export default class Display {
       'todo-list-desc'
     );
 
-    const todoListContainer = DOM.createEleAndAddClasses('div', 'todo-list');
-    DOM.appendChildren(todoListContainer, title, description);
+    let todoListCtnrExists = document.querySelector('.todo-list');
+
+    if (todoListCtnrExists) {
+      todoListCtnrExists.textContent = '';
+    } else {
+      todoListCtnrExists = DOM.createEleAndAddClasses('div', 'todo-list');
+    }
+    DOM.appendChildren(todoListCtnrExists, title, description);
 
     const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
 
@@ -107,10 +113,10 @@ export default class Display {
       todoItemsContainer.appendChild(Display.constructToDoItem(item));
     });
 
-    todoListContainer.appendChild(todoItemsContainer);
-    todoListContainer.appendChild(Display.constructAddToDoItem());
+    todoListCtnrExists.appendChild(todoItemsContainer);
+    todoListCtnrExists.appendChild(Display.constructAddToDoItem());
 
-    return todoListContainer;
+    return todoListCtnrExists;
   }
 
   static displayToDoList(todoList) {
