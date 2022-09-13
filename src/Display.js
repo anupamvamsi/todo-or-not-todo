@@ -3,17 +3,20 @@ import DOM from './DOM';
 
 export default class Display {
   static addToDoListToSidebar(todoList) {
+    const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
     const todoListContent = [];
+    todoListItems.forEach((item) => todoListContent.push(item.textContent));
+
+    let newToDoList;
 
     if (!todoListContent.includes(todoList.title) && todoList.title != 'Home') {
       const sidebarToDoLists = document.querySelector('.sidebar-todo-lists');
-      const newToDoList = DOM.createElementAndAddTextContent(
-        'li',
-        todoList.title
-      );
+      newToDoList = DOM.createElementAndAddTextContent('li', todoList.title);
 
       sidebarToDoLists.appendChild(newToDoList);
     }
+
+    return newToDoList;
   }
 
   static constructToDoItem(todoItem) {
