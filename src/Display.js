@@ -2,10 +2,26 @@ import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
+  static updateNumItemsOfListInSidebar(todoList) {
+    const sidebarListElement = DOMElements.getSidebarListElement(todoList);
+
+    let numItemsElement = DOMElements.getNumItemsElement(todoList);
+
+    if (!numItemsElement) {
+      numItemsElement = DOM.createElementAndAddTextContent(
+        'span',
+        ' ' + todoList.children.length
+      );
+      numItemsElement.classList.add('num-todo-items');
+
+      sidebarListElement.appendChild(numItemsElement);
+    } else {
+      numItemsElement.textContent = ' ' + todoList.children.length;
+    }
+  }
+
   static addToDoListToSidebar(todoList) {
-    const todoListItems = document.querySelectorAll('.sidebar-todo-lists>li');
-    const todoListContent = [];
-    todoListItems.forEach((item) => todoListContent.push(item.textContent));
+    const todoListContent = DOMElements.getSidebarListsContent();
 
     let newToDoList;
 
@@ -14,6 +30,7 @@ export default class Display {
       newToDoList = DOM.createElementAndAddTextContent('li', todoList.title);
 
       sidebarToDoLists.appendChild(newToDoList);
+      Display.updateNumItemsOfListInSidebar(todoList);
     }
 
     return newToDoList;
