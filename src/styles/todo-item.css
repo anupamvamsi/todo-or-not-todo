@@ -1,8 +1,22 @@
-.todo-item {
+.todo-item,
+.add-todo-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   gap: 0.5em;
 
   height: 3em;
+}
+
+.add-todo-container {
+  justify-content: flex-start;
+}
+
+.todo-info,
+.todo-manip {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5em;
 }

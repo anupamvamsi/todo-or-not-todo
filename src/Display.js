@@ -69,15 +69,28 @@ export default class Display {
       'todo-priority'
     );
 
-    const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
+    const infoContainer = DOM.createEleAndAddClasses('div', 'todo-info');
     DOM.appendChildren(
-      todoItemContainer,
+      infoContainer,
       isDone,
       title,
       description,
       dueDate,
       priority
     );
+
+    const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
+    const remove = DOM.createElementWTCAndClasses(
+      'span',
+      'Remove',
+      'todo-remove'
+    );
+
+    const manipContainer = DOM.createEleAndAddClasses('div', 'todo-manip');
+    DOM.appendChildren(manipContainer, edit, remove);
+
+    const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
+    DOM.appendChildren(todoItemContainer, infoContainer, manipContainer);
 
     return todoItemContainer;
   }
@@ -92,7 +105,7 @@ export default class Display {
 
     const addToDoItemContainer = DOM.createEleAndAddClasses(
       'div',
-      'todo-item',
+      // 'todo-item',
       'add-todo-container'
     );
 
