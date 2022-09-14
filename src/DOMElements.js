@@ -5,9 +5,13 @@ export default class DOMElements {
     return document.querySelector(selector);
   }
 
+  static getHomeNumItemsElement() {
+    return DOMElements.getSidebarHomeList().firstElementChild;
+  }
+
   static getNumItemsElement(todoList) {
     if (todoList.title === 'Home') {
-      return DOMElements.getSidebarHomeList().firstElementChild;
+      return DOMElements.getHomeNumItemsElement();
     }
 
     return DOMElements.getSidebarListElement(todoList).firstElementChild;

@@ -2,25 +2,27 @@ import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
-  static updateNumItemsOfListInSidebar(todoList) {
+  static updateNumItemsOfListInSidebar(todoList, allToDoItems) {
     const sidebarListElement = DOMElements.getSidebarListElement(todoList);
 
     let numItemsElement = DOMElements.getNumItemsElement(todoList);
+    let homeNumItemsElement = DOMElements.getHomeNumItemsElement();
+
+    const numItems = todoList.children.length;
+    const numItemsHome = allToDoItems.length;
 
     if (!numItemsElement) {
-      numItemsElement = DOM.createElementAndAddTextContent(
-        'span',
-        todoList.children.length
-      );
+      numItemsElement = DOM.createElementAndAddTextContent('span', numItems);
       numItemsElement.classList.add('num-todo-items');
 
       sidebarListElement.appendChild(numItemsElement);
     } else {
-      numItemsElement.textContent = todoList.children.length;
+      numItemsElement.textContent = numItems;
+      homeNumItemsElement.textContent = numItemsHome;
     }
   }
 
-  static addToDoListToSidebar(todoList) {
+  static addToDoListToSidebar(todoList, allToDoItems) {
     const todoListContent = DOMElements.getSidebarListsContent();
 
     let newToDoList;
@@ -30,7 +32,7 @@ export default class Display {
       newToDoList = DOM.createElementAndAddTextContent('li', todoList.title);
 
       sidebarToDoLists.appendChild(newToDoList);
-      Display.updateNumItemsOfListInSidebar(todoList);
+      Display.updateNumItemsOfListInSidebar(todoList, allToDoItems);
     }
 
     return newToDoList;
@@ -114,7 +116,7 @@ export default class Display {
     return addToDoItemContainer;
   }
 
-  static constructToDoList(todoList) {
+  static constructToDoList(todoList, allToDoItems) {
     const title = DOM.createElementWTCAndClasses(
       'h2',
       todoList.title,
@@ -138,7 +140,13 @@ export default class Display {
 
     const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
 
-    const todoItems = todoList.children;
+    let todoItems;
+    if (todoList.title === 'Home') {
+      todoItems = allToDoItems;
+    } else {
+      todoItems = todoList.children;
+    }
+
     todoItems.forEach((item) => {
       todoItemsContainer.appendChild(Display.constructToDoItem(item));
     });
@@ -149,8 +157,8 @@ export default class Display {
     return todoListCtnrExists;
   }
 
-  static displayToDoList(todoList) {
-    const todoListContainer = Display.constructToDoList(todoList);
+  static displayToDoList(todoList, allToDoItems) {
+    const todoListContainer = Display.constructToDoList(todoList, allToDoItems);
     DOMElements.content.appendChild(todoListContainer);
   }
 }

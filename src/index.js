@@ -20,7 +20,7 @@ function main() {
   app.createToDoItem('Second', 'blah blah', '17 April', '2', 'Chores', false);
   app.createToDoItem('Deuxieme', 'blah ', '08 April', '2', 'Chores', true);
 
-  Display.displayToDoList(todoList1);
+  Display.displayToDoList(todoList1, App.todoItems);
 
   Display.constructAddToDoItem();
 }

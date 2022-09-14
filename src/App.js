@@ -62,7 +62,7 @@ export default class App {
     // Add todoItem to todoList
     this.addItemToParentList(newItem);
     const todoList = this.getToDoList(newItem.parentList);
-    Display.updateNumItemsOfListInSidebar(todoList);
+    Display.updateNumItemsOfListInSidebar(todoList, App.todoItems);
 
     return newItem;
   }
@@ -90,9 +90,13 @@ export default class App {
       if (title === 'Home') {
         sidebarAddition = DOMElements.getSidebarHomeList();
       } else {
-        sidebarAddition = Display.addToDoListToSidebar(newList);
+        sidebarAddition = Display.addToDoListToSidebar(newList, App.todoItems);
       }
-      App.event.addEvtListenerToSbrLstItem(sidebarAddition, newList);
+      App.event.addEvtListenerToSbrLstItem(
+        sidebarAddition,
+        newList,
+        App.todoItems
+      );
     }
 
     // else
