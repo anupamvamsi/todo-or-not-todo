@@ -3,6 +3,7 @@ import DOM from './DOM';
 
 export default class Display {
   static updateNumItemsOfListInSidebar(todoList, allToDoItems) {
+    const sidebarHomeListElement = DOMElements.getSidebarHomeList('Home');
     const sidebarListElement = DOMElements.getSidebarListElement(todoList);
 
     let numItemsElement = DOMElements.getNumItemsElement(todoList);
@@ -11,7 +12,17 @@ export default class Display {
     const numItems = todoList.children.length;
     const numItemsHome = allToDoItems.length;
 
-    if (!numItemsElement) {
+    if (!homeNumItemsElement) {
+      homeNumItemsElement = DOM.createElementAndAddTextContent(
+        'span',
+        numItemsHome
+      );
+      homeNumItemsElement.classList.add('num-todo-items');
+
+      sidebarHomeListElement.appendChild(homeNumItemsElement);
+    }
+
+    if (!numItemsElement && todoList.title !== 'Home') {
       numItemsElement = DOM.createElementAndAddTextContent('span', numItems);
       numItemsElement.classList.add('num-todo-items');
 
