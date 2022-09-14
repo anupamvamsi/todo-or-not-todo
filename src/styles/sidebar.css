@@ -12,7 +12,6 @@
 .sidebar-items {
   list-style: none;
 
-  /* color: whitesmoke; */
   margin: 0em;
   padding: 0em;
 }
@@ -21,15 +20,42 @@
   font-size: 1.5rem;
   font-weight: bold;
 
-  padding: 0 0 1em 0;
+  margin: 0 0 1em 0;
 }
 
-/* .sidebar-items li a { */
-/* color: black; */
-/* color: whitesmoke; */
-/* } */
+.sidebar-todo-lists > li,
+.sidebar-items > li > a {
+  display: flex;
+  align-items: center;
 
-.sidebar-todo-lists:hover,
+  gap: 0.8em;
+
+  list-style: none;
+}
+
+.sidebar-todo-lists > li:hover,
 .sidebar-items > li > a:hover {
   cursor: pointer;
+}
+
+.sidebar-todo-lists > li {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.num-todo-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 1rem;
+  color: #1a1a1b;
+
+  width: 1.8em;
+  height: 1.8em;
+
+  border-radius: 50%;
+
+  background-color: darkcyan;
 }

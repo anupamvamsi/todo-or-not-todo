@@ -10,13 +10,13 @@ export default class Display {
     if (!numItemsElement) {
       numItemsElement = DOM.createElementAndAddTextContent(
         'span',
-        ' ' + todoList.children.length
+        todoList.children.length
       );
       numItemsElement.classList.add('num-todo-items');
 
       sidebarListElement.appendChild(numItemsElement);
     } else {
-      numItemsElement.textContent = ' ' + todoList.children.length;
+      numItemsElement.textContent = todoList.children.length;
     }
   }
 
