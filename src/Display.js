@@ -2,6 +2,17 @@ import DOMElements from './DOMElements';
 import DOM from './DOM';
 
 export default class Display {
+  // Event listeners
+  static attachEventListenerSidebarList(
+    todoListElement,
+    todoList,
+    allToDoItems
+  ) {
+    todoListElement.addEventListener('click', function caller() {
+      Display.displayToDoList(todoList, allToDoItems);
+    });
+  }
+
   static updateNumItemsOfListInSidebar(todoList, allToDoItems) {
     const sidebarHomeListElement = DOMElements.getSidebarHomeList('Home');
     const sidebarListElement = DOMElements.getSidebarListElement(todoList);
@@ -36,21 +47,26 @@ export default class Display {
   static addToDoListToSidebar(todoList, allToDoItems) {
     const todoListContent = DOMElements.getSidebarListsContent();
 
-    let newToDoList;
+    let todoListElement;
 
     if (!todoListContent.includes(todoList.title) && todoList.title != 'Home') {
       const sidebarToDoLists = document.querySelector('.sidebar-todo-lists');
-      newToDoList = DOM.createElementAndAddTextContent('li', todoList.title);
+      todoListElement = DOM.createElementAndAddTextContent(
+        'li',
+        todoList.title
+      );
 
-      sidebarToDoLists.appendChild(newToDoList);
+      sidebarToDoLists.appendChild(todoListElement);
       Display.updateNumItemsOfListInSidebar(todoList, allToDoItems);
     }
 
-    newToDoList.addEventListener('click', function caller() {
-      Display.displayToDoList(todoList, allToDoItems);
-    });
+    Display.attachEventListenerSidebarList(
+      todoListElement,
+      todoList,
+      allToDoItems
+    );
 
-    return newToDoList;
+    return todoListElement;
   }
 
   static constructToDoItem(todoItem) {
