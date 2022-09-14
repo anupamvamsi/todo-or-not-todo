@@ -1,5 +1,8 @@
 .todo-list {
   padding: 2em;
+  background-color: rgb(53, 145, 145);
+  background-color: #1a1a1b;
+  background-color: #222222;
 }
 
 .todo-list-title {
