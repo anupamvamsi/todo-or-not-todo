@@ -1,14 +1,11 @@
 import ToDoItem from './ToDo';
 import ToDoList from './ToDoList';
 import Display from './Display';
-import MyEvent from './MyEvent';
 import DOMElements from './DOMElements';
 
 export default class App {
   static todoItems = [];
   static todoLists = [];
-
-  static event = new MyEvent();
 
   constructor() {}
 
@@ -86,17 +83,16 @@ export default class App {
       App.todoLists.push(newList);
       console.log('Todo lists:', App.todoLists);
 
-      let sidebarAddition;
       if (title === 'Home') {
-        sidebarAddition = DOMElements.getSidebarHomeList();
+        DOMElements.getSidebarHomeList().addEventListener(
+          'click',
+          function caller() {
+            Display.displayToDoList(newList, App.todoItems);
+          }
+        );
       } else {
-        sidebarAddition = Display.addToDoListToSidebar(newList, App.todoItems);
+        Display.addToDoListToSidebar(newList, App.todoItems);
       }
-      App.event.addEvtListenerToSbrLstItem(
-        sidebarAddition,
-        newList,
-        App.todoItems
-      );
     }
 
     // else

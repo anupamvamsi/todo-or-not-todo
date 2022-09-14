@@ -46,6 +46,10 @@ export default class Display {
       Display.updateNumItemsOfListInSidebar(todoList, allToDoItems);
     }
 
+    newToDoList.addEventListener('click', function caller() {
+      Display.displayToDoList(todoList, allToDoItems);
+    });
+
     return newToDoList;
   }
 
