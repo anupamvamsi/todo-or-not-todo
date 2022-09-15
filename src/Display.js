@@ -1,5 +1,6 @@
 import DOMElements from './DOMElements';
 import DOM from './DOM';
+import App from './App';
 
 export default class Display {
   // Event listeners
@@ -10,6 +11,29 @@ export default class Display {
   ) {
     todoListElement.addEventListener('click', function caller() {
       Display.displayToDoList(todoList, allToDoItems);
+    });
+  }
+
+  static attachEventListenerToDoItem(
+    todoItem,
+    title,
+    description,
+    dueDate,
+    priority,
+    edit,
+    rmv
+  ) {
+    rmv.addEventListener('click', function remover() {
+      // removeFromDOM
+      console.log(rmv.parentNode.parentNode.remove());
+
+      App.removeToDoItem(todoItem);
+      App.removeToDoItemFromToDoList(todoItem);
+
+      Display.updateNumItemsOfListInSidebar(
+        App.getToDoList(todoItem.parentList),
+        App.todoItems
+      );
     });
   }
 
@@ -124,6 +148,16 @@ export default class Display {
 
     const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
     DOM.appendChildren(todoItemContainer, infoContainer, manipContainer);
+
+    Display.attachEventListenerToDoItem(
+      todoItem,
+      title,
+      description,
+      dueDate,
+      priority,
+      edit,
+      remove
+    );
 
     return todoItemContainer;
   }
