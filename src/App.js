@@ -9,10 +9,33 @@ export default class App {
 
   constructor() {}
 
-  getToDoList(title) {
+  static getToDoItemIdx(todoItem) {
+    return App.todoItems.indexOf(todoItem);
+  }
+
+  static getToDoListIdx(todoList) {
+    return App.todoLists.indexOf(todoList);
+  }
+
+  static removeToDoItem(todoItem) {
+    const idx = App.getToDoItemIdx(todoItem);
+    App.todoItems.splice(idx, 1);
+  }
+
+  static removeToDoItemFromToDoList(todoItem) {
+    const todoList = App.getToDoList(todoItem.parentList);
+    const idxToDoList = App.getToDoListIdx(todoList);
+    const idxToDoItem = App.todoLists[idxToDoList].children.indexOf(todoItem);
+
+    console.log(App.todoLists[idxToDoList].children[idxToDoItem]);
+    App.todoLists[idxToDoList].children.splice(idxToDoItem, 1);
+    console.log(App.todoLists[idxToDoList].children[idxToDoItem]);
+  }
+
+  static getToDoList(title) {
     let returnList = undefined;
 
-    if (this.getToDoListTitles().includes(title)) {
+    if (App.getToDoListTitles().includes(title)) {
       let foundTitle = App.todoLists.filter((list) => list.title === title);
       returnList = foundTitle[0];
     }
@@ -20,7 +43,7 @@ export default class App {
     return returnList;
   }
 
-  getToDoListTitles() {
+  static getToDoListTitles() {
     let listOfTitles = [];
 
     App.todoLists.forEach((list) => {
@@ -31,7 +54,7 @@ export default class App {
   }
 
   addChildToList(todoListTitle, todoItem) {
-    const todoList = this.getToDoList(todoListTitle);
+    const todoList = App.getToDoList(todoListTitle);
     todoList.children.push(todoItem);
   }
 
@@ -58,14 +81,14 @@ export default class App {
 
     // Add todoItem to todoList
     this.addItemToParentList(newItem);
-    const todoList = this.getToDoList(newItem.parentList);
+    const todoList = App.getToDoList(newItem.parentList);
     Display.updateNumItemsOfListInSidebar(todoList, App.todoItems);
 
     return newItem;
   }
 
   isAListTitle(title) {
-    const listOfTitles = this.getToDoListTitles();
+    const listOfTitles = App.getToDoListTitles();
 
     if (listOfTitles.includes(title)) {
       return true;
