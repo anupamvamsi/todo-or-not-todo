@@ -27,9 +27,7 @@ export default class App {
     const idxToDoList = App.getToDoListIdx(todoList);
     const idxToDoItem = App.todoLists[idxToDoList].children.indexOf(todoItem);
 
-    console.log(App.todoLists[idxToDoList].children[idxToDoItem]);
     App.todoLists[idxToDoList].children.splice(idxToDoItem, 1);
-    console.log(App.todoLists[idxToDoList].children[idxToDoItem]);
   }
 
   static getToDoList(title) {

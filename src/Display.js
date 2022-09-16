@@ -17,15 +17,19 @@ export default class Display {
   static attachEventListenerToDoItem(
     todoItem,
     title,
-    description,
+    // description, // doesn't need an evt listener?
     dueDate,
     priority,
     edit,
     rmv
   ) {
+    priority.addEventListener('change', function priorityChanger() {
+      console.log(todoItem.priority);
+    });
+
     rmv.addEventListener('click', function remover() {
       // removeFromDOM
-      console.log(rmv.parentNode.parentNode.remove());
+      rmv.parentNode.parentNode.remove();
 
       App.removeToDoItem(todoItem);
       App.removeToDoItemFromToDoList(todoItem);
@@ -93,6 +97,25 @@ export default class Display {
     return todoListElement;
   }
 
+  static constructPriorityElement(todoItem) {
+    const priority = DOM.createEleAndAddAttributes(
+      'select',
+      ['title', 'Priority'],
+      ['required', true]
+    );
+    for (let i = 1; i < 5; i++) {
+      let option = DOM.createEleAndAddAttributes('option', ['value', i]);
+      option.textContent = i;
+      if (i === Number(todoItem.priority)) {
+        option.selected = true;
+      }
+      priority.appendChild(option);
+    }
+    priority.classList.add('todo-priority');
+
+    return priority;
+  }
+
   static constructToDoItem(todoItem) {
     const isDone = DOM.createEleAndAddAttributes(
       'input',
@@ -110,30 +133,24 @@ export default class Display {
       todoItem.title,
       'todo-title'
     );
-    const description = DOM.createElementWTCAndClasses(
-      'p',
-      todoItem.description,
-      'todo-desc'
-    );
+    // const description = DOM.createElementWTCAndClasses(
+    //   'p',
+    //   todoItem.description,
+    //   'todo-desc'
+    // );
     const dueDate = DOM.createElementWTCAndClasses(
       'p',
       todoItem.dueDate,
       'todo-due'
     );
-    const priority = DOM.createElementWTCAndClasses(
-      'p',
-      todoItem.priority,
-      'todo-priority'
-    );
+    const priority = Display.constructPriorityElement(todoItem);
 
     const infoContainer = DOM.createEleAndAddClasses('div', 'todo-info');
     DOM.appendChildren(
       infoContainer,
       isDone,
-      title,
-      description,
-      dueDate,
-      priority
+      title
+      // description,
     );
 
     const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
@@ -144,7 +161,7 @@ export default class Display {
     );
 
     const manipContainer = DOM.createEleAndAddClasses('div', 'todo-manip');
-    DOM.appendChildren(manipContainer, edit, remove);
+    DOM.appendChildren(manipContainer, dueDate, priority, edit, remove);
 
     const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
     DOM.appendChildren(todoItemContainer, infoContainer, manipContainer);
@@ -152,7 +169,7 @@ export default class Display {
     Display.attachEventListenerToDoItem(
       todoItem,
       title,
-      description,
+      // description,
       dueDate,
       priority,
       edit,
