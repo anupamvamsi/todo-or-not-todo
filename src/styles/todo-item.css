@@ -21,7 +21,19 @@
 }
 
 .todo-priority {
-  width: 4ch;
+  text-align: center;
+
+  width: 6ch;
+
+  margin-right: 0.6em;
+  /* padding: 0.2em; */
+
+  border: none;
+  border-radius: 1em;
+}
+
+.todo-priority {
+  /* appearance: none; */
 }
 
 .p1 {
