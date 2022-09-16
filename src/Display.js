@@ -17,12 +17,15 @@ export default class Display {
   static attachEventListenerToDoItem(
     todoItem,
     title,
-    // description, // doesn't need an evt listener?
     dueDate,
     priority,
     edit,
     rmv
   ) {
+    dueDate.addEventListener('change', function dateChanger() {
+      todoItem.dueDate = dueDate.value;
+    });
+
     priority.addEventListener('change', function priorityChanger() {
       const oldVal = 'p' + todoItem.priority;
       priority.classList.remove(oldVal);
@@ -137,25 +140,18 @@ export default class Display {
       todoItem.title,
       'todo-title'
     );
-    // const description = DOM.createElementWTCAndClasses(
-    //   'p',
-    //   todoItem.description,
-    //   'todo-desc'
-    // );
-    const dueDate = DOM.createElementWTCAndClasses(
-      'p',
-      todoItem.dueDate,
-      'todo-due'
+
+    const dueDate = DOM.createEleAndAddAttributes(
+      'input',
+      ['type', 'date'],
+      ['value', todoItem.dueDate]
     );
+    dueDate.classList.add('todo-due');
+
     const priority = Display.constructPriorityElement(todoItem);
 
     const infoContainer = DOM.createEleAndAddClasses('div', 'todo-info');
-    DOM.appendChildren(
-      infoContainer,
-      isDone,
-      title
-      // description,
-    );
+    DOM.appendChildren(infoContainer, isDone, title);
 
     const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
     const remove = DOM.createElementWTCAndClasses(
@@ -173,7 +169,6 @@ export default class Display {
     Display.attachEventListenerToDoItem(
       todoItem,
       title,
-      // description,
       dueDate,
       priority,
       edit,

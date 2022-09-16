@@ -17,7 +17,12 @@
 }
 
 .todo-due {
-  width: 10ch;
+  /* width: 10ch; */
+  color: whitesmoke;
+
+  border: none;
+
+  background: none;
 }
 
 .todo-priority {
@@ -25,16 +30,16 @@
 
   width: 6ch;
 
-  margin-right: 0.6em;
+  margin: 0 1em;
   /* padding: 0.2em; */
 
   border: none;
   border-radius: 1em;
 }
 
-.todo-priority {
-  /* appearance: none; */
-}
+/* .todo-priority {
+  appearance: none;
+} */
 
 .p1 {
   font-weight: bold;
