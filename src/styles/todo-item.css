@@ -10,14 +10,11 @@
   height: 3em;
 }
 
-/* .todo-title { width: 24ch; } */
-
 .todo-desc {
   display: none;
 }
 
 .todo-due {
-  /* width: 10ch; */
   color: whitesmoke;
 
   border: none;
@@ -31,7 +28,6 @@
   width: 6ch;
 
   margin: 0 1em;
-  /* padding: 0.2em; */
 
   border: none;
   border-radius: 1em;

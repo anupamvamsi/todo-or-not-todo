@@ -16,12 +16,16 @@ export default class Display {
 
   static attachEventListenerToDoItem(
     todoItem,
+    isDone,
     title,
     dueDate,
     priority,
-    edit,
     rmv
   ) {
+    isDone.addEventListener('change', function toggleDone() {
+      todoItem.changeItemStatus();
+    });
+
     dueDate.addEventListener('change', function dateChanger() {
       todoItem.dueDate = dueDate.value;
     });
@@ -29,7 +33,7 @@ export default class Display {
     priority.addEventListener('change', function priorityChanger() {
       const oldVal = 'p' + todoItem.priority;
       priority.classList.remove(oldVal);
-      todoItem.priority = priority.value;
+      todoItem.changeItemPriority(priority.value);
       priority.classList.add('p' + priority.value);
     });
 
@@ -168,10 +172,10 @@ export default class Display {
 
     Display.attachEventListenerToDoItem(
       todoItem,
+      isDone,
       title,
       dueDate,
       priority,
-      edit,
       remove
     );
 

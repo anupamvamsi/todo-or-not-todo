@@ -16,7 +16,7 @@ export default class ToDoItem {
   }
 
   changeItemStatus() {
-    this.isDone = true;
+    this.isDone = !this.isDone;
   }
 
   changeItemPriority(priority) {
