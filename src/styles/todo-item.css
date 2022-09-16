@@ -10,6 +10,40 @@
   height: 3em;
 }
 
+/* .todo-title { width: 24ch; } */
+
+.todo-desc {
+  display: none;
+}
+
+.todo-due {
+  width: 10ch;
+}
+
+.todo-priority {
+  width: 4ch;
+}
+
+.p1 {
+  font-weight: bold;
+  background-color: red;
+}
+
+.p2 {
+  font-weight: bold;
+  background-color: yellow;
+}
+
+.p3 {
+  font-weight: bold;
+  background-color: yellowgreen;
+}
+
+.p4 {
+  font-weight: bold;
+  background-color: green;
+}
+
 .add-todo-container {
   justify-content: flex-start;
 }
@@ -20,4 +54,12 @@
   align-items: center;
 
   gap: 0.5em;
+}
+
+.todo-title:hover,
+.todo-due:hover,
+.todo-priority:hover,
+.todo-edit:hover,
+.todo-remove:hover {
+  cursor: pointer;
 }

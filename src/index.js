@@ -14,11 +14,11 @@ function main() {
   app.createToDoList('Main', 'A list of all your tasks');
   app.createToDoList('Flutes', 'A list of all your tasks');
 
-  app.createToDoItem('First', 'blah ', '28 April', '1', 'Chores', true);
+  app.createToDoItem('First', 'blah ', '2020/04/12', '1', '', true);
   app.createToDoItem('Premier', 'blah ', '18 April', '2', 'Scooby', false);
 
-  app.createToDoItem('Second', 'blah blah', '17 April', '2', 'Chores', false);
-  app.createToDoItem('Deuxieme', 'blah ', '08 April', '2', 'Chores', true);
+  app.createToDoItem('Second', 'blah blah', '17 April', '4', 'Chores', false);
+  app.createToDoItem('Deuxieme', 'blah ', '08 April', '3', 'Home', true);
 
   Display.displayToDoList(App.getToDoList('Home'), App.todoItems);
 

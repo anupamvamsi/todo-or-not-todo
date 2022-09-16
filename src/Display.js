@@ -24,7 +24,10 @@ export default class Display {
     rmv
   ) {
     priority.addEventListener('change', function priorityChanger() {
-      console.log(todoItem.priority);
+      const oldVal = 'p' + todoItem.priority;
+      priority.classList.remove(oldVal);
+      todoItem.priority = priority.value;
+      priority.classList.add('p' + priority.value);
     });
 
     rmv.addEventListener('click', function remover() {
@@ -112,6 +115,7 @@ export default class Display {
       priority.appendChild(option);
     }
     priority.classList.add('todo-priority');
+    priority.classList.add('p' + priority.value);
 
     return priority;
   }
