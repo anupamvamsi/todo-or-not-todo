@@ -1,10 +1,20 @@
+.add-todo-form-container {
+  display: flex;
+
+  width: 70%;
+  padding: 1em 3em;
+
+  border-radius: 1em;
+
+  background-color: #1a1a1b;
+}
+
 .form-todo-add {
   display: grid;
-  grid-row: repeat(1fr, 3);
+  grid-template-rows: repeat(1fr, 3);
 
+  width: 100%;
   row-gap: 0.5em;
-
-  width: 30%;
 }
 
 .form-desc-inp {
@@ -22,11 +32,51 @@
 
 .form-date-and-priority {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
+  gap: 1em;
 }
 
 .form-priority-container > .todo-priority {
   margin: 0;
+}
+
+.form-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 2em;
+}
+
+.form-submit,
+.form-cancel {
+  text-align: center;
+  color: whitesmoke;
+
+  width: 50%;
+  margin-top: 2em;
+  padding: 1em 2em;
+
+  border: none;
+  border-radius: 1em;
+
+  background-color: #131313;
+}
+
+.form-cancel {
+  background-color: maroon;
+}
+
+.form-submit:hover,
+.form-cancel:hover {
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background-color: #414141;
+}
+
+.form-cancel:hover {
+  background-color: rgb(167, 0, 0);
 }
