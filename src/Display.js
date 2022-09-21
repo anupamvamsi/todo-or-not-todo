@@ -66,9 +66,10 @@ export default class Display {
 
     // after creating todo-item, add a "+ add item" and also remove the event listener
     addToDoCntr.classList.remove('add-todo-container');
-    addToDoCntr.classList.add('add-todo-form');
+    addToDoCntr.classList.add('add-todo-form-container');
     Display.removeEventListenerAddToDo(addToDoCntr);
 
+    addToDoCntr.scrollIntoView();
     // const addToDoItem = Display.constructAddToDoItem();
     // addToDoCntr.parentNode.appendChild(addToDoItem);
   }
