@@ -1,6 +1,7 @@
 import DOMElements from './DOMElements';
 import DOM from './DOM';
 import App from './App';
+import Form from './Form';
 
 export default class Display {
   // Event listeners
@@ -55,28 +56,12 @@ export default class Display {
     addToDoCntr.removeEventListener('click', Display.addNewToDo);
   }
 
-  static createAddToDoForm() {
-    const formCntr = document.createElement('form');
-
-    const formHead = document.createElement('h3');
-    formHead.textContent = 'Add new todo';
-
-    const addTitleLabel = document.createElement('label');
-    addTitleLabel.textContent = 'Title';
-
-    const addTitleInput = document.createElement('input');
-
-    DOM.appendChildren(formCntr, formHead, addTitleLabel, addTitleInput);
-
-    return formCntr;
-  }
-
   static addNewToDo(e) {
     const addToDoCntr = DOMElements.getElementOfSelector('.add-todo-container');
 
     addToDoCntr.textContent = '';
 
-    const formCntr = Display.createAddToDoForm();
+    const formCntr = Form.createAddToDoForm();
     addToDoCntr.appendChild(formCntr);
 
     // after creating todo-item, add a "+ add item" and also remove the event listener
