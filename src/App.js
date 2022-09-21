@@ -51,21 +51,28 @@ export default class App {
     return listOfTitles;
   }
 
-  addChildToList(todoListTitle, todoItem) {
+  static addChildToList(todoListTitle, todoItem) {
     const todoList = App.getToDoList(todoListTitle);
     todoList.children.push(todoItem);
   }
 
-  addItemToParentList(todoItem) {
+  static addItemToParentList(todoItem) {
     // if parentList is NOT an existing ToDoList, create ToDoList:
-    if (!this.isAListTitle(todoItem.parentList)) {
-      this.createToDoList(todoItem.parentList, '');
+    if (!App.isAListTitle(todoItem.parentList)) {
+      App.createToDoList(todoItem.parentList, '');
     }
 
-    this.addChildToList(todoItem.parentList, todoItem);
+    App.addChildToList(todoItem.parentList, todoItem);
   }
 
-  createToDoItem(title, description, dueDate, priority, parentList, isDone) {
+  static createToDoItem(
+    title,
+    description,
+    dueDate,
+    priority,
+    parentList,
+    isDone
+  ) {
     const newItem = new ToDoItem(
       title,
       description,
@@ -78,14 +85,14 @@ export default class App {
     App.todoItems.push(newItem);
 
     // Add todoItem to todoList
-    this.addItemToParentList(newItem);
+    App.addItemToParentList(newItem);
     const todoList = App.getToDoList(newItem.parentList);
     Display.updateNumItemsOfListInSidebar(todoList, App.todoItems);
 
     return newItem;
   }
 
-  isAListTitle(title) {
+  static isAListTitle(title) {
     const listOfTitles = App.getToDoListTitles();
 
     if (listOfTitles.includes(title)) {
@@ -96,9 +103,9 @@ export default class App {
     return false;
   }
 
-  createToDoList(title, description) {
+  static createToDoList(title, description) {
     let newList;
-    if (!this.isAListTitle(title)) {
+    if (!App.isAListTitle(title)) {
       console.log(`Creating ${title} ToDoList...`);
       newList = new ToDoList(title, description);
       App.todoLists.push(newList);

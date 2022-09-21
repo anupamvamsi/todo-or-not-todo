@@ -8,18 +8,17 @@ import Display from './Display';
 import App from './App';
 
 function main() {
-  const app = new App();
-  app.createToDoList('Home', 'A list of all your tasks');
-  app.createToDoList('Chores', 'A list of all your tasks');
-  app.createToDoList('Scooby', 'A list of all your tasks');
-  app.createToDoList('Main', 'A list of all your tasks');
-  app.createToDoList('Flutes', 'A list of all your tasks');
+  App.createToDoList('Home', 'A list of all your tasks');
+  App.createToDoList('Chores', 'A list of all your tasks');
+  App.createToDoList('Scooby', 'A list of all your tasks');
+  App.createToDoList('Main', 'A list of all your tasks');
+  App.createToDoList('Flutes', 'A list of all your tasks');
 
-  app.createToDoItem('First', 'blah ', '2020-04-12', '1', '', true);
-  app.createToDoItem('Premier', 'blah ', '2020-04-18', '2', 'Scooby', false);
+  App.createToDoItem('First', 'blah ', '2020-04-12', '1', '', true);
+  App.createToDoItem('Premier', 'blah ', '2020-04-18', '2', 'Scooby', false);
 
-  app.createToDoItem('Second', 'blah blah', '2020-04-23', '4', 'Chores', false);
-  app.createToDoItem('Deuxieme', 'blah ', '2020-04-29', '3', 'Home', true);
+  App.createToDoItem('Second', 'blah blah', '2020-04-23', '4', 'Chores', false);
+  App.createToDoItem('Deuxieme', 'blah ', '2020-04-29', '3', 'Home', true);
 
   Display.displayToDoList(App.getToDoList('Home'), App.todoItems);
 
