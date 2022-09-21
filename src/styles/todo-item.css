@@ -10,6 +10,19 @@
   height: 3em;
 }
 
+.add-todo-container {
+  justify-content: flex-start;
+
+  padding: 1em;
+
+  border-radius: 0.4em;
+}
+
+.add-todo-container:hover {
+  cursor: pointer;
+  background-color: #3d3d3d;
+}
+
 .todo-desc {
   display: none;
 }
@@ -55,10 +68,6 @@
 .p4 {
   font-weight: bold;
   background-color: green;
-}
-
-.add-todo-container {
-  justify-content: flex-start;
 }
 
 .todo-info,

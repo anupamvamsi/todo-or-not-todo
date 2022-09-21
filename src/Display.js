@@ -51,6 +51,47 @@ export default class Display {
     });
   }
 
+  static removeEventListenerAddToDo(addToDoCntr) {
+    addToDoCntr.removeEventListener('click', Display.addNewToDo);
+  }
+
+  static createAddToDoForm() {
+    const formCntr = document.createElement('form');
+
+    const formHead = document.createElement('h3');
+    formHead.textContent = 'Add new todo';
+
+    const addTitleLabel = document.createElement('label');
+    addTitleLabel.textContent = 'Title';
+
+    const addTitleInput = document.createElement('input');
+
+    DOM.appendChildren(formCntr, formHead, addTitleLabel, addTitleInput);
+
+    return formCntr;
+  }
+
+  static addNewToDo(e) {
+    const addToDoCntr = DOMElements.getElementOfSelector('.add-todo-container');
+
+    addToDoCntr.textContent = '';
+
+    const formCntr = Display.createAddToDoForm();
+    addToDoCntr.appendChild(formCntr);
+
+    // after creating todo-item, add a "+ add item" and also remove the event listener
+    addToDoCntr.classList.remove('add-todo-container');
+    addToDoCntr.classList.add('add-todo-form');
+    Display.removeEventListenerAddToDo(addToDoCntr);
+
+    // const addToDoItem = Display.constructAddToDoItem();
+    // addToDoCntr.parentNode.appendChild(addToDoItem);
+  }
+
+  static attachEventListenerAddToDo(addToDoCntr) {
+    addToDoCntr.addEventListener('click', Display.addNewToDo);
+  }
+
   static updateNumItemsOfListInSidebar(todoList, allToDoItems) {
     const sidebarHomeListElement = DOMElements.getSidebarHomeList('Home');
     const sidebarListElement = DOMElements.getSidebarListElement(todoList);
@@ -145,6 +186,12 @@ export default class Display {
       'todo-title'
     );
 
+    const desc = DOM.createElementWTCAndClasses(
+      'p',
+      todoItem.description,
+      'todo-desc'
+    );
+
     const dueDate = DOM.createEleAndAddAttributes(
       'input',
       ['type', 'date'],
@@ -155,7 +202,7 @@ export default class Display {
     const priority = Display.constructPriorityElement(todoItem);
 
     const infoContainer = DOM.createEleAndAddClasses('div', 'todo-info');
-    DOM.appendChildren(infoContainer, isDone, title);
+    DOM.appendChildren(infoContainer, isDone, title, desc);
 
     const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
     const remove = DOM.createElementWTCAndClasses(
@@ -198,6 +245,8 @@ export default class Display {
 
     DOM.appendChildren(addToDoItemContainer, plus, addItem);
 
+    Display.attachEventListenerAddToDo(addToDoItemContainer);
+
     return addToDoItemContainer;
   }
 
@@ -235,9 +284,9 @@ export default class Display {
     todoItems.forEach((item) => {
       todoItemsContainer.appendChild(Display.constructToDoItem(item));
     });
+    todoItemsContainer.appendChild(Display.constructAddToDoItem());
 
     todoListCtnrExists.appendChild(todoItemsContainer);
-    todoListCtnrExists.appendChild(Display.constructAddToDoItem());
 
     return todoListCtnrExists;
   }
