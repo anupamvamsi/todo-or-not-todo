@@ -145,8 +145,8 @@ export default class Form {
 
   static createAddToDoForm() {
     const formCntr = DOM.createEleAndAddClasses('form', 'form-todo-add');
-    formCntr.action = '#';
-    formCntr.method = 'post';
+    formCntr.action = '';
+    formCntr.method = '';
     Form.createFormHead(formCntr);
     Form.createFormTitle(formCntr);
     Form.createFormDesc(formCntr);

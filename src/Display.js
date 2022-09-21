@@ -56,6 +56,20 @@ export default class Display {
     addToDoCntr.removeEventListener('click', Display.addNewToDo);
   }
 
+  static submitAddToDoForm(e) {
+    // e.preventDefault();
+    console.log(e.target);
+    const tdTitle = DOMElements.getElementOfSelector('#add-title').value;
+    const tdDesc = DOMElements.getElementOfSelector('#add-desc').value;
+    const tdDate = DOMElements.getElementOfSelector('#add-date').value;
+    const tdPriority = DOMElements.getElementOfSelector('#add-priority').value;
+    const tdList = DOMElements.getElementOfSelector('#add-list').value;
+
+    console.log(tdTitle, tdDesc, tdList, tdDate, tdPriority);
+
+    App.createToDoItem(tdTitle, tdDesc, tdDate, tdPriority, tdList);
+  }
+
   static addNewToDo(e) {
     const addToDoCntr = DOMElements.getElementOfSelector('.add-todo-container');
 
@@ -70,6 +84,9 @@ export default class Display {
     Display.removeEventListenerAddToDo(addToDoCntr);
 
     addToDoCntr.scrollIntoView();
+
+    const submitBtn = DOMElements.getElementOfSelector('.form-submit');
+    submitBtn.addEventListener('click', Display.submitAddToDoForm);
     // const addToDoItem = Display.constructAddToDoItem();
     // addToDoCntr.parentNode.appendChild(addToDoItem);
   }
