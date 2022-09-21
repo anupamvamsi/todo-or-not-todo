@@ -1,0 +1,32 @@
+.form-todo-add {
+  display: grid;
+  grid-row: repeat(1fr, 3);
+
+  row-gap: 0.5em;
+
+  width: 30%;
+}
+
+.form-desc-inp {
+  resize: none;
+}
+
+.form-date-container,
+.form-priority-container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+
+  margin-top: 0.8em;
+}
+
+.form-date-and-priority {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form-priority-container > .todo-priority {
+  margin: 0;
+}
