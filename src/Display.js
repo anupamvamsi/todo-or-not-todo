@@ -59,17 +59,34 @@ export default class Display {
   static submitAddToDoForm(e) {
     e.preventDefault();
 
-    const tdTitle = DOMElements.getElementOfSelector('#add-title').value;
-    const tdDesc = DOMElements.getElementOfSelector('#add-desc').value;
-    const tdDate = DOMElements.getElementOfSelector('#add-date').value;
-    const tdPriority = DOMElements.getElementOfSelector('#add-priority').value;
-    const tdList = DOMElements.getElementOfSelector('#add-list').value;
-    const tdDone = DOMElements.getElementOfSelector('#add-done').value;
+    const tdTitle = DOMElements.getElementOfSelector('#add-title');
+    const tdDesc = DOMElements.getElementOfSelector('#add-desc');
+    const tdDate = DOMElements.getElementOfSelector('#add-date');
+    const tdPriority = DOMElements.getElementOfSelector('#add-priority');
+    const tdList = DOMElements.getElementOfSelector('#add-list');
+    const tdDone = DOMElements.getElementOfSelector('#add-done');
 
-    App.createToDoItem(tdTitle, tdDesc, tdDate, tdPriority, tdList, tdDone);
+    if (!tdTitle.checkValidity()) {
+      tdTitle.reportValidity();
+    } else if (!tdDate.checkValidity()) {
+      tdDate.reportValidity();
+    }
 
-    const currToDoList = document.querySelector('.todo-list-title').textContent;
-    Display.displayToDoList(App.getToDoList(currToDoList), App.todoItems);
+    const validInput = tdTitle.checkValidity() && tdDate.checkValidity();
+    if (validInput) {
+      App.createToDoItem(
+        tdTitle.value,
+        tdDesc.value,
+        tdDate.value,
+        tdPriority.value,
+        tdList.value,
+        tdDone.value
+      );
+
+      const currToDoList =
+        document.querySelector('.todo-list-title').textContent;
+      Display.displayToDoList(App.getToDoList(currToDoList), App.todoItems);
+    }
   }
 
   static cancelAddToDoForm(e) {
