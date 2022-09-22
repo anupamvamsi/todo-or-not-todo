@@ -64,7 +64,7 @@ export default class Display {
     const tdDate = DOMElements.getElementOfSelector('#add-date');
     const tdPriority = DOMElements.getElementOfSelector('#add-priority');
     const tdList = DOMElements.getElementOfSelector('#add-list');
-    const tdDone = DOMElements.getElementOfSelector('#add-done');
+    const tdDone = DOMElements.getElementOfSelector('#add-done').checked;
 
     if (!tdTitle.checkValidity()) {
       tdTitle.reportValidity();
@@ -81,7 +81,7 @@ export default class Display {
         tdDate.value,
         tdPriority.value,
         tdList.value,
-        tdDone.value
+        tdDone
       );
 
       const currToDoList =
