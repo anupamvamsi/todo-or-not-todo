@@ -175,7 +175,7 @@ export default class Form {
     formCntr.method = '';
     Form.createFormHead(formCntr);
     Form.createFormTitle(formCntr);
-    Form.createFormDesc(formCntr);
+    // Form.createFormDesc(formCntr);
     Form.createParentListField(formCntr);
     const dateCntr = Form.createDatePicker();
     const priority = Form.createPriorityPicker();

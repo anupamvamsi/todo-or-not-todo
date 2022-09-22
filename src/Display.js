@@ -60,7 +60,7 @@ export default class Display {
     e.preventDefault();
 
     const tdTitle = DOMElements.getElementOfSelector('#add-title');
-    const tdDesc = DOMElements.getElementOfSelector('#add-desc');
+    // const tdDesc = DOMElements.getElementOfSelector('#add-desc');
     const tdDate = DOMElements.getElementOfSelector('#add-date');
     const tdPriority = DOMElements.getElementOfSelector('#add-priority');
     const tdList = DOMElements.getElementOfSelector('#add-list');
@@ -76,7 +76,8 @@ export default class Display {
     if (validInput) {
       App.createToDoItem(
         tdTitle.value,
-        tdDesc.value,
+        '',
+        // tdDesc.value,
         tdDate.value,
         tdPriority.value,
         tdList.value,
@@ -218,11 +219,11 @@ export default class Display {
       'todo-title'
     );
 
-    const desc = DOM.createElementWTCAndClasses(
-      'p',
-      todoItem.description,
-      'todo-desc'
-    );
+    // const desc = DOM.createElementWTCAndClasses(
+    //   'p',
+    //   todoItem.description,
+    //   'todo-desc'
+    // );
 
     const dueDate = DOM.createEleAndAddAttributes(
       'input',
@@ -234,9 +235,9 @@ export default class Display {
     const priority = Display.constructPriorityElement(todoItem);
 
     const infoContainer = DOM.createEleAndAddClasses('div', 'todo-info');
-    DOM.appendChildren(infoContainer, isDone, title, desc);
+    DOM.appendChildren(infoContainer, isDone, title);
 
-    const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
+    // const edit = DOM.createElementWTCAndClasses('span', 'Edit', 'todo-edit');
     const remove = DOM.createElementWTCAndClasses(
       'span',
       'Remove',
@@ -244,7 +245,7 @@ export default class Display {
     );
 
     const manipContainer = DOM.createEleAndAddClasses('div', 'todo-manip');
-    DOM.appendChildren(manipContainer, dueDate, priority, edit, remove);
+    DOM.appendChildren(manipContainer, dueDate, priority, remove);
 
     const todoItemContainer = DOM.createEleAndAddClasses('div', 'todo-item');
     DOM.appendChildren(todoItemContainer, infoContainer, manipContainer);
