@@ -1,0 +1,338 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #a7a7a7;
+
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 9fr;
+
+  margin: 0;
+
+  height: 100vh;
+}
+
+#title {
+  grid-column: 1 / 3;
+
+  margin: 0;
+  padding: 1em;
+
+  background-color: rgb(163, 255, 255);
+  background-color: rgb(186, 255, 255);
+  background-color: rgb(0, 107, 107);
+  background-color: #1a1a1b;
+  background-color: #131313;
+}
+
+.todo-item,
+.add-todo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 0.5em;
+
+  width: 50%;
+  height: 3em;
+}
+
+.add-todo-container {
+  justify-content: flex-start;
+
+  padding: 1em;
+
+  border-radius: 0.4em;
+}
+
+.add-todo-container:hover {
+  cursor: pointer;
+  background-color: #3d3d3d;
+}
+
+.todo-desc {
+  display: none;
+}
+
+.todo-due {
+  color: whitesmoke;
+
+  border: none;
+
+  background: none;
+}
+
+.todo-priority {
+  text-align: center;
+
+  width: 6ch;
+
+  margin: 0 1em;
+
+  border: none;
+  border-radius: 1em;
+}
+
+/* .todo-priority {
+  appearance: none;
+} */
+
+.p1 {
+  font-weight: bold;
+  background-color: red;
+}
+
+.p2 {
+  font-weight: bold;
+  background-color: yellow;
+}
+
+.p3 {
+  font-weight: bold;
+  background-color: yellowgreen;
+}
+
+.p4 {
+  font-weight: bold;
+  background-color: green;
+}
+
+.todo-info,
+.todo-manip {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5em;
+}
+
+.todo-title:hover,
+.todo-due:hover,
+.todo-priority:hover,
+.todo-edit:hover,
+.todo-remove:hover {
+  cursor: pointer;
+}
+
+.add-todo-form-container {
+  display: flex;
+
+  max-width: 40%;
+  min-width: 380px;
+  padding: 2em 3em;
+
+  border-radius: 1em;
+
+  background-color: #1a1a1b;
+}
+
+.form-todo-add {
+  display: grid;
+  grid-template-rows: repeat(1fr, 6);
+  grid-template-columns: 0.3fr 1fr;
+
+  gap: 0.5em;
+
+  width: 100%;
+}
+
+.form-head {
+  grid-column: 1 / 3;
+
+  margin-top: 0;
+}
+
+.form-title-label,
+.form-list-label {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.form-list-label {
+  grid-row: 3 / 4;
+}
+
+.form-title-input,
+.form-list-input {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.form-list-input {
+  grid-row: 3 / 4;
+}
+
+.form-desc-inp {
+  resize: none;
+}
+
+.form-date-container,
+.form-priority-container,
+.form-done-container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+
+  margin-top: 0.8em;
+}
+
+.form-done-container {
+  gap: 0.2em;
+}
+
+.form-date-and-priority {
+  grid-row: 4 / 5;
+  grid-column: 1 / 3;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 1em;
+}
+
+.form-priority-container > .todo-priority {
+  margin: 0;
+}
+
+.form-buttons {
+  grid-row: 6 / 7;
+  grid-column: 1 / 3;
+
+  display: flex;
+  align-items: center;
+
+  gap: 2em;
+}
+
+.form-submit,
+.form-cancel {
+  text-align: center;
+  color: whitesmoke;
+
+  width: 50%;
+  margin-top: 2em;
+  padding: 1em 2em;
+
+  border: none;
+  border-radius: 1em;
+
+  background-color: #131313;
+}
+
+.form-cancel {
+  background-color: maroon;
+}
+
+.form-submit:hover,
+.form-cancel:hover {
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background-color: #414141;
+}
+
+.form-cancel:hover {
+  background-color: rgb(167, 0, 0);
+}
+
+.todo-list {
+  display: grid;
+  grid-template-rows: 0.1fr 1fr;
+
+  padding: 2em;
+
+  overflow-y: scroll;
+
+  background-color: #222222;
+}
+
+.todo-list-title {
+  margin-top: 0em;
+}
+
+.todo-items {
+  overflow-y: scroll;
+}
+
+.sidebar {
+  margin: 0em;
+  padding: 2em;
+
+  background-color: rgb(226, 255, 255);
+  background-color: rgb(197, 255, 255);
+  background-color: rgb(234, 255, 255);
+  background-color: rgb(0, 128, 128);
+  background-color: #1a1a1b;
+}
+
+.sidebar-items {
+  list-style: none;
+
+  margin: 0em;
+  padding: 0em;
+}
+
+.sidebar-items li {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  margin: 0 0 1em 0;
+}
+
+.sidebar-todo-lists > li,
+.sidebar-items > li > a {
+  display: flex;
+  align-items: center;
+
+  gap: 0.8em;
+
+  list-style: none;
+}
+
+.sidebar-todo-lists > li:hover,
+.sidebar-items > li > a:hover {
+  cursor: pointer;
+}
+
+.sidebar-todo-lists > li {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.num-todo-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1a1a1b;
+
+  min-width: max-content;
+  width: 1.8em;
+  height: 1.8em;
+
+  padding: 0 1em;
+  margin: 0 1em 0 0;
+
+  border-radius: 3em;
+
+  background-color: darkcyan;
+}
+
