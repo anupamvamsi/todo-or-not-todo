@@ -67,6 +67,18 @@ export default class Display {
     const tdDone = DOMElements.getElementOfSelector('#add-done').value;
 
     App.createToDoItem(tdTitle, tdDesc, tdDate, tdPriority, tdList, tdDone);
+
+    const currToDoList = document.querySelector('.todo-list-title').textContent;
+    Display.displayToDoList(App.getToDoList(currToDoList), App.todoItems);
+  }
+
+  static cancelAddToDoForm(e) {
+    // e.preventDefault();
+    const cntr = DOMElements.getElementOfSelector('.add-todo-form-container');
+    const addToDoItem = Display.constructAddToDoItem();
+
+    cntr.parentNode.appendChild(addToDoItem);
+    cntr.parentNode.removeChild(cntr);
   }
 
   static addNewToDo(e) {
@@ -86,8 +98,9 @@ export default class Display {
 
     const submitBtn = DOMElements.getElementOfSelector('.form-submit');
     submitBtn.addEventListener('click', Display.submitAddToDoForm);
-    // const addToDoItem = Display.constructAddToDoItem();
-    // addToDoCntr.parentNode.appendChild(addToDoItem);
+
+    const cancelBtn = DOMElements.getElementOfSelector('.form-cancel');
+    cancelBtn.addEventListener('click', Display.cancelAddToDoForm);
   }
 
   static attachEventListenerAddToDo(addToDoCntr) {
