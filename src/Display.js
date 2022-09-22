@@ -290,18 +290,18 @@ export default class Display {
       'todo-list-title'
     );
 
-    const description = DOM.createElementWTCAndClasses(
-      'p',
-      todoList.description,
-      'todo-list-desc'
-    );
+    // const description = DOM.createElementWTCAndClasses(
+    //   'p',
+    //   todoList.description,
+    //   'todo-list-desc'
+    // );
 
     const titleAndDescCntr = DOM.createEleAndAddClasses(
       'div',
       '.todo-list-title-container'
     );
 
-    DOM.appendChildren(titleAndDescCntr, title, description);
+    DOM.appendChildren(titleAndDescCntr, title);
 
     let todoListCtnrExists = document.querySelector('.todo-list');
 
