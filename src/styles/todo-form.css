@@ -22,12 +22,17 @@
 }
 
 .form-date-container,
-.form-priority-container {
+.form-priority-container,
+.form-done-container {
   display: flex;
   align-items: center;
   gap: 1em;
 
   margin-top: 0.8em;
+}
+
+.form-done-container {
+  gap: 0.2em;
 }
 
 .form-date-and-priority {

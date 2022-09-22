@@ -1,4 +1,5 @@
 import DOM from './DOM';
+import DOMElements from './DOMElements';
 
 export default class Form {
   static createFormHead(formCntr) {
@@ -49,13 +50,15 @@ export default class Form {
   static createParentListField(formCntr) {
     const label = DOM.createElementWTCAndClasses(
       'label',
-      'Add to list (default is Home)',
+      'Add to list',
       'form-list-label'
     );
     label.setAttribute('for', 'add-list');
 
     const inp = DOM.createEleAndAddClasses('input', 'form-list-inp');
     inp.id = 'add-list';
+    inp.value =
+      DOMElements.getElementOfSelector('.todo-list-title').textContent;
     inp.maxlength = 15;
     inp.title = 'Parent Todo List';
 
@@ -90,6 +93,7 @@ export default class Form {
       'form-priority-label'
     );
     label.setAttribute('for', 'add-priority');
+
     const inp = DOM.createEleAndAddAttributes(
       'select',
       ['id', 'add-priority'],
@@ -120,6 +124,28 @@ export default class Form {
     DOM.appendChildren(priorityCntr, label, inp);
 
     return priorityCntr;
+  }
+
+  static createDoneCheckbox() {
+    const label = DOM.createElementWTCAndClasses(
+      'label',
+      'Done?',
+      'form-done-label'
+    );
+    label.setAttribute('for', 'add-done');
+
+    const inp = DOM.createEleAndAddAttributes(
+      'input',
+      ['id', 'add-done'],
+      ['type', 'checkbox'],
+      ['name', 'isDone'],
+      ['title', 'To do item done?']
+    );
+
+    const doneCntr = DOM.createEleAndAddClasses('div', 'form-done-container');
+    DOM.appendChildren(doneCntr, label, inp);
+
+    return doneCntr;
   }
 
   static createFormSubmit() {
@@ -153,12 +179,13 @@ export default class Form {
     Form.createParentListField(formCntr);
     const dateCntr = Form.createDatePicker();
     const priority = Form.createPriorityPicker();
+    const doneCntr = Form.createDoneCheckbox();
 
     const dateAndPriorityCntr = DOM.createEleAndAddClasses(
       'div',
       'form-date-and-priority'
     );
-    DOM.appendChildren(dateAndPriorityCntr, dateCntr, priority);
+    DOM.appendChildren(dateAndPriorityCntr, dateCntr, priority, doneCntr);
 
     formCntr.appendChild(dateAndPriorityCntr);
 

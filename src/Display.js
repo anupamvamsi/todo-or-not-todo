@@ -57,17 +57,16 @@ export default class Display {
   }
 
   static submitAddToDoForm(e) {
-    // e.preventDefault();
-    console.log(e.target);
+    e.preventDefault();
+
     const tdTitle = DOMElements.getElementOfSelector('#add-title').value;
     const tdDesc = DOMElements.getElementOfSelector('#add-desc').value;
     const tdDate = DOMElements.getElementOfSelector('#add-date').value;
     const tdPriority = DOMElements.getElementOfSelector('#add-priority').value;
     const tdList = DOMElements.getElementOfSelector('#add-list').value;
+    const tdDone = DOMElements.getElementOfSelector('#add-done').value;
 
-    console.log(tdTitle, tdDesc, tdList, tdDate, tdPriority);
-
-    App.createToDoItem(tdTitle, tdDesc, tdDate, tdPriority, tdList);
+    App.createToDoItem(tdTitle, tdDesc, tdDate, tdPriority, tdList, tdDone);
   }
 
   static addNewToDo(e) {
@@ -266,6 +265,13 @@ export default class Display {
       'todo-list-desc'
     );
 
+    const titleAndDescCntr = DOM.createEleAndAddClasses(
+      'div',
+      '.todo-list-title-container'
+    );
+
+    DOM.appendChildren(titleAndDescCntr, title, description);
+
     let todoListCtnrExists = document.querySelector('.todo-list');
 
     if (todoListCtnrExists) {
@@ -273,7 +279,7 @@ export default class Display {
     } else {
       todoListCtnrExists = DOM.createEleAndAddClasses('div', 'todo-list');
     }
-    DOM.appendChildren(todoListCtnrExists, title, description);
+    DOM.appendChildren(todoListCtnrExists, titleAndDescCntr);
 
     const todoItemsContainer = DOM.createEleAndAddClasses('div', 'todo-items');
 
