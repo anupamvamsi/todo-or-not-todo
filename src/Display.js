@@ -25,10 +25,12 @@ export default class Display {
   ) {
     isDone.addEventListener('change', function toggleDone() {
       todoItem.changeItemStatus();
+      App.updateStorage();
     });
 
     dueDate.addEventListener('change', function dateChanger() {
       todoItem.dueDate = dueDate.value;
+      App.updateStorage();
     });
 
     priority.addEventListener('change', function priorityChanger() {
@@ -325,6 +327,7 @@ export default class Display {
       todoItemsContainer.appendChild(Display.constructToDoItem(item));
     });
     todoItemsContainer.appendChild(Display.constructAddToDoItem());
+    todoItemsContainer.addEventListener('click', App.updateStorage);
 
     todoListCtnrExists.appendChild(todoItemsContainer);
 
