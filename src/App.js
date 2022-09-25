@@ -9,6 +9,33 @@ export default class App {
 
   constructor() {}
 
+  static updateStorage() {
+    localStorage.setItem('todoItems', JSON.stringify(App.todoItems));
+    localStorage.setItem('todoLists', JSON.stringify(App.todoLists));
+  }
+
+  static getFromStorage() {
+    const items = JSON.parse(localStorage.getItem('todoItems'));
+    const lists = JSON.parse(localStorage.getItem('todoLists'));
+
+    lists.forEach((list) => {
+      let l = list;
+      l = App.createToDoList(l.title, l.description, l.children);
+    });
+
+    items.forEach((item) => {
+      let i = item;
+      i = App.createToDoItem(
+        i.title,
+        i.description,
+        i.dueDate,
+        i.priority,
+        i.parentList,
+        i.isDone
+      );
+    });
+  }
+
   static getToDoItemIdx(todoItem) {
     return App.todoItems.indexOf(todoItem);
   }
@@ -99,17 +126,17 @@ export default class App {
       return true;
     }
 
-    console.log(`${title} doesn't exist!`);
+    // console.log(`${title} doesn't exist!`);
     return false;
   }
 
   static createToDoList(title, description) {
     let newList;
     if (!App.isAListTitle(title)) {
-      console.log(`Creating ${title} ToDoList...`);
+      // console.log(`Creating ${title} ToDoList...`);
       newList = new ToDoList(title, description);
       App.todoLists.push(newList);
-      console.log('Todo lists:', App.todoLists);
+      // console.log('Todo lists:', App.todoLists);
 
       if (title === 'Home') {
         DOMElements.getSidebarHomeList().addEventListener(
@@ -125,7 +152,7 @@ export default class App {
 
     // else
     else {
-      console.log(`${title} already exists`);
+      // console.log(`${title} already exists`);
     }
 
     return newList;
